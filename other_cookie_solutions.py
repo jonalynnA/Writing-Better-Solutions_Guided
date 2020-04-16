@@ -81,3 +81,15 @@ def eating_cookies_2(n, cache=None):
         cache[n] = eating_cookies_2(
             n - 1, cache) + eating_cookies_2(n - 2, cache) + eating_cookies_2(n - 3, cache)
     return cache[n]
+
+# Not recursion but this way can iterate through 100000000000s much larger numbers
+
+
+def eating_cookies_fast(n, cache=None):
+    res = [1, 1, 2] + [0] * (n-2)
+    for i in range(3, n+1):
+        res[i] = (sum(res[i-3:i]))
+    return res[n]
+
+
+print(eating_cookies_2(999))
